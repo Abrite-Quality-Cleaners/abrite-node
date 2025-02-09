@@ -1,0 +1,81 @@
+Blouse, 8.50
+Shirt, 6.50
+Dress, 15.00
+Dress/Pleat, 20.00
+Jumpsuit, 18.00
+Spt/Jacket, 9.50
+Skirt, 7.50
+Over Coat, 16.50
+Coat, 15.00
+
+Pants, 6.50
+Sweater, 9.00
+Pleated Skirt, 9.50
+Robe, 9.50
+Two Piece Suit, 15.00
+Women's Two Piece Suit, 15.00
+2pc Dress, 20.00
+
+Apron - Half, 5.00
+Apron - Full, 6.00
+Leggings, 5.50
+Cape, 10.50
+Blouse Set, 11.50
+Sweater Set, 12.50
+Three Piece Suit, 20.00
+
+Rain Coat, 15.00
+Tuxedo, 20.00
+Labcoat, 8.00
+Sports Jersey, 7.50
+Chef's Coat, 5.75
+Overall, 15.00
+Press Only, 3.00
+Shorts, 6.50
+Free Cleaning, 0.00
+
+Vest, 5.50
+Lining, 4.00
+Scarf, 5.50
+Blanket, 13.50
+Afgan, 12.50
+Table Cloth, 13.50
+Hat, 9.00
+Gloves, 5.50
+Belt, 0.00
+
+Evening Dress, 25.00
+Gown, 35.00
+Outer Jacket, 10.25
+Vestment, 13.50
+Cassock, 9.50
+Alb, 10.50
+Surplice, 9.50
+
+Uniform, 8.50
+Uniform Pants, 5.50
+Uniform Shirt, 5.50
+Polo, 5.50
+Tie, 5.50
+Kids Pants, 6.50
+Kids Jacket, 6.50
+Kids Shirt, 5.50
+
+Kids Sweater, 7.00
+Kids Short/Skirt, 6.00
+Kids Dress, 9.50
+Kids 2pc, 9.50
+Kids Coat, 10.00
+Wedding Clean, 200.00
+Add Wedding Box, 90.00
+Christening Cleaning, 37.50
+
+Communion Cleaning, 37.50
+Add Communion Box, 65.00
+D/C Bag, 0.00
+Warmup Suit Set, 17.00
+Priest Stole, 5.50
+Vail, 15.00
+
+Custom, XXXX
+

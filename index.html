@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dry Cleaning Services</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #1e1e1e; /* Dark background color */
+            color: white;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #1e1e1e;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 80px;
+            display: block;
+        }
+
+        .navbar-buttons {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .navbar-button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar-button:hover {
+            background-color: #555;
+        }
+
+        .employee-menu {
+            position: relative;
+        }
+
+        .employee-label {
+            display: flex;
+            align-items: center;
+            background-color: #333;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .employee-label:hover {
+            background-color: #555;
+        }
+
+        .employee-label span {
+            margin-right: 8px;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: #333;
+            border-radius: 5px;
+            margin-top: 5px;
+            overflow: hidden;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .dropdown-menu.active {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+            background-color: #333;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #555;
+        }
+
+        .content {
+            display: flex;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .tabbed-widget {
+            flex: 2; /* Occupies two-thirds of the page */
+            background-color: #282828;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .tab-button.active {
+            background-color: #555;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 15px;
+        }
+
+        .grid-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            background-color: #333;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+
+        .grid-button:hover {
+            background-color: #555;
+        }
+
+        .grid-button img {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 5px;
+        }
+
+        .receipt-widget {
+            flex: 1; /* Occupies one-third of the page */
+            background-color: #282828;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .receipt-widget h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #444;
+            padding-bottom: 10px;
+        }
+
+        .receipt-buttons {
+            display: flex;
+            justify-content: space-evenly;
+            margin-top: 20px;
+        }
+
+        .receipt-button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .receipt-button:hover {
+            background-color: #555;
+        }
+
+        .receipt-table {
+            width: 100%;
+            font-family: monospace;
+        }
+        .receipt-item, .receipt-total {
+            display: table-row;
+        }
+        .receipt-item span, .receipt-total {
+            display: table-cell;
+            padding: 5px;
+        }
+        .remove-button {
+            background-color: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .remove-button {
+            background-color: #C00000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .remove-button:active {
+            background-color: inherit;
+            color: #C00000;
+            border: 1px solid #C00000;
+        }
+        .clear-button {
+            background-color: #FFA500;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .pay-now-button {
+            background-color: #008000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .pay-later-button {
+            background-color: #0000FF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .cancel-button {
+            background-color: #C00000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .right-align {
+            text-align: right;
+        }
+        .quantity-input {
+            width: 50px;
+        }
+        .left-align {
+            text-align: left;
+        }
+        .quantity-input {
+            width: 50px;
+            background-color: #333;
+            color: white;
+            border: 1px solid #555;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        .pay-now-button, .pay-later-button, .void-button {
+            width: 32%;
+            height: 40px;
+            margin: 5px 1%;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .void-button {
+            background-color: #C00000;
+            color: white;
+        }
+        .receipt-total strong {
+            font-size: 18px;
+        }
+        .payment-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .payment-popup-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .payment-option-button, .close-popup-button {
+            margin: 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .payment-option-button {
+            background-color: #008000;
+            color: white;
+        }
+        .close-popup-button {
+            background-color: #C00000;
+            color: white;
+        }
+        .version-display {
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            margin-left: 10px;
+            font-family: monospace;
+            font-size: 14px;
+            width: 9ch; /* Adjusted width to fit 9 characters */
+        }
+        .datetime-display {
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            margin-left: 10px;
+            font-family: monospace;
+            font-size: 14px;
+            width: auto;
+            margin-right: 10px; /* Adjusted margin to position it to the left of the employee menu */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+            <input type="text" value="Node v0.1" class="version-display" readonly>
+        </div>
+        <input type="text" id="datetime-display" class="datetime-display" readonly>
+        <div class="employee-menu">
+            <div class="employee-label" onclick="toggleDropdown()">
+                <span>John D.</span>
+                <span>&#9662;</span> <!-- Downward caret icon -->
+            </div>
+            <div class="dropdown-menu" id="employeeDropdown">
+                <a href="#">Settings</a>
+                <a href="#">Logout</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <!-- Tabbed Widget -->
+        <div class="tabbed-widget">
+            <div class="tab-buttons">
+                <button class="tab-button active" onclick="showTab(0)">Dry Clean</button>
+                <button class="tab-button" onclick="showTab(1)">Launder</button>
+                <button class="tab-button" onclick="showTab(2)">Additional Services</button>
+            </div>
+            <div class="tab-content active">
+                <div class="grid">
+                    <button class="grid-button" data-cost="5.00">
+                        <img src="shirt-icon.png" alt="Shirt">
+                        <span>Shirt</span>
+                    </button>
+                    <button class="grid-button" data-cost="10.00">
+                        <img src="jacket-icon.png" alt="Jacket">
+                        <span>Jacket</span>
+                    </button>
+                    <button class="grid-button" data-cost="15.00">
+                        <img src="coat-icon.png" alt="Coat">
+                        <span>Coat</span>
+                    </button>
+                    <button class="grid-button" data-cost="20.00">
+                        <img src="dress-icon.png" alt="Dress">
+                        <span>Dress</span>
+                    </button>
+                    <button class="grid-button" data-cost="7.00">
+                        <img src="skirt-icon.png" alt="Skirt">
+                        <span>Skirt</span>
+                    </button>
+                    <button class="grid-button" data-cost="8.00">
+                        <img src="blouse-icon.png" alt="Blouse">
+                        <span>Blouse</span>
+                    </button>
+                    <button class="grid-button" data-cost="25.00">
+                        <img src="suit-icon.png" alt="Suit">
+                        <span>Suit</span>
+                    </button>
+                    <button class="grid-button" data-cost="3.00">
+                        <img src="tie-icon.png" alt="Tie">
+                        <span>Tie</span>
+                    </button>
+                    <button class="grid-button" data-cost="6.00">
+                        <img src="scarf-icon.png" alt="Scarf">
+                        <span>Scarf</span>
+                    </button>
+                    <button class="grid-button" data-cost="12.00">
+                        <img src="sweater-icon.png" alt="Sweater">
+                        <span>Sweater</span>
+                    </button>
+                    <button class="grid-button" data-cost="9.00">
+                        <img src="vest-icon.png" alt="Vest">
+                        <span>Vest</span>
+                    </button>
+                    <button class="grid-button" data-cost="7.50">
+                        <img src="pants-icon.png" alt="Pants">
+                        <span>Pants</span>
+                    </button>
+                </div>
+            </div>
+            <div class="tab-content">
+                <div class="grid">
+                    <button class="grid-button" data-cost="10.00">
+                        <img src="bedsheet-icon.png" alt="Bedsheet">
+                        <span>Bedsheet</span>
+                    </button>
+                    <button class="grid-button" data-cost="5.00">
+                        <img src="pillowcase-icon.png" alt="Pillowcase">
+                        <span>Pillowcase</span>
+                    </button>
+                    <button class="grid-button" data-cost="20.00">
+                        <img src="duvet-icon.png" alt="Duvet">
+                        <span>Duvet</span>
+                    </button>
+                    <button class="grid-button" data-cost="3.00">
+                        <img src="towel-icon.png" alt="Towel">
+                        <span>Towel</span>
+                    </button>
+                    <button class="grid-button" data-cost="15.00">
+                        <img src="tablecloth-icon.png" alt="Tablecloth">
+                        <span>Tablecloth</span>
+                    </button>
+                    <button class="grid-button" data-cost="2.00">
+                        <img src="napkin-icon.png" alt="Napkin">
+                        <span>Napkin</span>
+                    </button>
+                    <button class="grid-button" data-cost="30.00">
+                        <img src="rug-icon.png" alt="Rug">
+                        <span>Rug</span>
+                    </button>
+                    <button class="grid-button" data-cost="25.00">
+                        <img src="curtains-icon.png" alt="Curtains">
+                        <span>Curtains</span>
+                    </button>
+                </div>
+            </div>
+            <div class="tab-content">
+                <div class="grid">
+                    <button class="grid-button" data-cost="10.00">
+                        <img src="alteration-icon.png" alt="Alteration">
+                        <span>Alteration</span>
+                    </button>
+                    <button class="grid-button" data-cost="15.00">
+                        <img src="repair-icon.png" alt="Repair">
+                        <span>Repair</span>
+                    </button>
+                    <button class="grid-button" data-cost="5.00">
+                        <img src="stain-removal-icon.png" alt="Stain Removal">
+                        <span>Stain Removal</span>
+                    </button>
+                    <button class="grid-button" data-cost="8.00">
+                        <img src="pressing-icon.png" alt="Pressing">
+                        <span>Pressing</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Receipt Widget -->
+        <div class="receipt-widget">
+            <h3>Laundry Basket</h3>
+            <table class="receipt-table">
+                <thead>
+                    <tr>
+                        <th class="left-align">Qty</th>
+                        <th class="left-align">Item</th>
+                        <th class="left-align">Ea.</th>
+                        <th class="left-align">Sub</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="receipt-body">
+                    <!-- Items will be dynamically added here -->
+                </tbody>
+                <tfoot>
+                    <tr class="receipt-total">
+                        <td colspan="5" class="right-align"><strong>Total: $0.00</strong></td>
+                    </tr>
+                </tfoot>
+            </table>
+            <div class="receipt-buttons">
+                <button class="payment-option-button">Cash</button>
+                <button class="payment-option-button">Credit</button>
+                <button class="payment-option-button">Check</button>
+            </div>
+            <div class="receipt-buttons">
+                <button class="pay-later-button">Pay Later</button>
+                <button class="void-button" onclick="clearReceipt()">Void</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleDropdown() {
+            const dropdown = document.getElementById('employeeDropdown');
+            dropdown.classList.toggle('active');
+        }
+
+        function showTab(index) {
+            const tabs = document.querySelectorAll('.tab-content');
+            const buttons = document.querySelectorAll('.tab-button');
+
+            tabs.forEach((tab, i) => {
+                if (i === index) {
+                    tab.classList.add('active');
+                    buttons[i].classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                    buttons[i].classList.remove('active');
+                }
+            });
+        }
+
+        // Close dropdown if clicking outside
+        document.addEventListener('click', function (event) {
+            const dropdown = document.getElementById('employeeDropdown');
+            const label = document.querySelector('.employee-label');
+            if (!dropdown.contains(event.target) && !label.contains(event.target)) {
+                dropdown.classList.remove('active');
+            }
+        });
+
+        function updateSubtotal(input) {
+            const row = input.closest('tr');
+            const cost = parseFloat(row.querySelector('.right-align span').textContent.replace('$', ''));
+            const quantity = parseInt(input.value);
+            const subtotal = cost * quantity;
+            row.querySelector('.subtotal').textContent = `$${subtotal.toFixed(2)}`;
+            updateTotal();
+        }
+
+        function updateTotal() {
+            let total = 0;
+            document.querySelectorAll('.subtotal').forEach(subtotalElement => {
+                total += parseFloat(subtotalElement.textContent.replace('$', ''));
+            });
+            document.querySelector('.receipt-total strong').textContent = `Total: $${total.toFixed(2)}`;
+        }
+
+        function addItemToReceipt(itemName, itemCost) {
+            const receiptBody = document.getElementById('receipt-body');
+            const existingRow = Array.from(receiptBody.children).find(row => row.querySelector('.left-align span').textContent === itemName);
+
+            if (existingRow) {
+                const quantityInput = existingRow.querySelector('.quantity-input');
+                quantityInput.value = parseInt(quantityInput.value) + 1;
+                updateSubtotal(quantityInput);
+            } else {
+                const newRow = document.createElement('tr');
+                newRow.classList.add('receipt-item');
+                newRow.innerHTML = `
+                    <td>
+                        <input type="number" value="1" min="1" class="quantity-input" onchange="updateSubtotal(this)">
+                    </td>
+                    <td class="left-align"><span>${itemName}</span></td>
+                    <td class="right-align"><span>$${itemCost.toFixed(2)}</span></td>
+                    <td class="right-align"><span class="subtotal">$${itemCost.toFixed(2)}</span></td>
+                    <td><button class="remove-button" onclick="removeItem(this)">Remove</button></td>
+                `;
+                receiptBody.appendChild(newRow);
+                updateTotal();
+            }
+        }
+
+        function removeItem(button) {
+            const row = button.closest('tr');
+            row.remove();
+            updateTotal();
+        }
+
+        function clearReceipt() {
+            document.getElementById('receipt-body').innerHTML = '';
+            updateTotal();
+        }
+
+        document.querySelectorAll('.grid-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const itemName = button.querySelector('span').textContent;
+                const itemCost = parseFloat(button.getAttribute('data-cost'));
+                addItemToReceipt(itemName, itemCost);
+            });
+        });
+
+        function updateDateTime() {
+            const now = new Date();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const year = now.getFullYear();
+            const hours = now.getHours() % 12 || 12;
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const ampm = now.getHours() >= 12 ? 'PM' : 'AM';
+            const formattedDateTime = `${month}/${day}/${year} ${hours}:${minutes}:${seconds} ${ampm}`;
+            document.getElementById('datetime-display').value = formattedDateTime;
+        }
+
+        setInterval(updateDateTime, 1000);
+        updateDateTime(); // Initial call to set the datetime immediately
+    </script>
+
+</body>
+</html>
